@@ -4,8 +4,8 @@
   var inputEnabled = true;
 
   
-  
-  $('document').ready(function(){
+  $(function () {
+  // $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
     var chartSourceData = <%=@event.vote_histogram.to_json%>;
     var chartData = [];
