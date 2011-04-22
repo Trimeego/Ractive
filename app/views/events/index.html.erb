@@ -9,7 +9,7 @@
   <!-- <div id="content" class="rounded"> -->
     <% @events.each do |event| %>
       <div class='event-table-cell'>
-        <div id="title"><%= event.title %></div>
+        <div id="title"><%= link_to event.title, event %></div>
         <div id="description"><%= event.description %></div>
         <div id='details'>
         <div id="location"><label>Where</label><%= event.location %></div>
