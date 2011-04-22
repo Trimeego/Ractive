@@ -1,0 +1,40 @@
+div.event-table-cell {
+	display: block;
+	background-color: #fff;
+	padding: 5px 20px 5px 20px;	
+	height: 90px;
+}
+
+div.event-table-cell #title {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+div.event-table-cell #details {
+	width:30%;
+	text-align: right;
+}
+
+div.event-table-cell label {
+	display: inline-block;
+	width: 100px;
+	padding-right: 5px;
+	text-align: right;
+	color: #7f7f7f;
+}
+
+div#description {
+	width: 50%;
+	height: 60px;
+	overflow: hidden;
+	
+}
+
+div.event-table-cell #start-time {
+}
+
+div.event-table-cell #location {
+}
+
+div.event-table-cell #end-time {
+}
