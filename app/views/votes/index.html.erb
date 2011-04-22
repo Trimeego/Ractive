@@ -1,0 +1,36 @@
+<h1>Listing votes</h1>
+
+<table>
+  <tr>
+    <th>Nickname</th>
+    <th>Browser</th>
+    <th>Browser</th>
+    <th>Browser version</th>
+    <th>Operating system</th>
+    <th>Os version</th>
+    <th>Rating</th>
+    <th>Created at utc</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @votes.each do |vote| %>
+  <tr>
+    <td><%= vote.nickname %></td>
+    <td><%= vote.browser %></td>
+    <td><%= vote.browser %></td>
+    <td><%= vote.browser_version %></td>
+    <td><%= vote.operating_system %></td>
+    <td><%= vote.os_version %></td>
+    <td><%= vote.rating %></td>
+    <td><%= link_to 'Show', event_vote_path(@event, vote) %></td>
+    <td><%= link_to 'Edit', edit_event_vote_path(@event,vote) %></td>
+    <td><%= link_to 'Destroy', event_vote_path(@event, vote), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vote', new_event_vote_path(@event) %>

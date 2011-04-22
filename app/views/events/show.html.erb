@@ -1,0 +1,246 @@
+<script type="text/javascript" charset="utf-8">
+  var ratingAreaLeftMargin = 20;
+  var numberWidth = 52;
+  var inputEnabled = true;
+
+  
+  
+  $('document').ready(function(){
+    //produce a martix form the data to get the effect that I am looking for
+    var chartSourceData = [0,0,0,0,0,0,0,0,0,0];
+    var chartData = [];
+    var chartColors = ['#C3443C', '#C35D3C', '#C3773C', '#C3913C', '#C3AA3C', '#B8B93C', '#A1BC3C', '#88BE3C', '#70C03C', '#5AC23C']
+    
+    for(var d=0;d<chartSourceData.length;d++)
+    {
+      var seriesData = [];
+      for(var d2=0;d2<chartSourceData.length;d2++)
+      {
+          if(d2==d){
+            seriesData.push(chartSourceData[d2]);
+          }
+          else
+          {
+            seriesData.push(0);
+          }
+      }
+      chartData.push(seriesData);
+    }
+    
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'chart',
+            defaultSeriesType: 'column',
+            backgroundColor: '#000000'
+        },
+        title: {text:'Incoming Feedback'},
+        colors:chartColors,
+        credits: {enabled:false},
+        xAxis: {
+            categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        },
+        yAxis: { 
+          title:{ text:null }
+        },
+        legend: {
+            enabled: false,
+            layout: 'vertical',
+            backgroundColor: '#FFFFFF',
+            floating: true,
+            style: {
+                left: '100px',
+                top: '70px',
+                bottom: 'auto'
+            }
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>'+ this.x +'</b><br/>'+
+                    + this.y;
+            }
+        },
+        plotOptions: {
+          column: {
+                      stacking: 'normal'
+                  }                  
+        },
+        series: [
+          {data: chartData[0], stack:0},
+          {data: chartData[1], stack:0},
+          {data: chartData[2], stack:0},
+          {data: chartData[3], stack:0},
+          {data: chartData[4], stack:0},
+          {data: chartData[5], stack:0},
+          {data: chartData[6], stack:0},
+          {data: chartData[7], stack:0},
+          {data: chartData[8], stack:0},
+          {data: chartData[9], stack:0}
+        ]
+    });
+ 
+ 
+    function pushCast(user, rating, event_id){
+
+    		url = 'http://simple-rpm.heroku.com/rater/' + channel + '?user=' + user + '&rating=' + rating;
+
+        var vote_submit_url = '/events/<%=@event.id%>/votes/'
+
+    		$.ajax({
+        	url: vote_submit_url,
+        	dataType: "json",
+        	type: "POST",
+        	processData: false,
+        	contentType: "application/json",
+        	data: "{\"vote\":{\"nickname\":\"" + user + "\", \"rating\":" + rating + "}}",
+    			success:function(data){
+    			},
+    			error:function(error){
+    			}
+
+    		});
+    }
+
+    
+    var currentSlot = -1
+    $('#indicator').click(function(){
+      if(inputEnabled)
+      {
+        
+        inputEnabled = false;
+        pushCast('testUser', currentSlot, <%=@event.id%>);
+        $('.current-number').html('').animate({opacity:0}, 500, function(){
+          inputEnabled=true;
+          $('.current-number').html(currentSlot.toString());
+          $('.current-number').animate({opacity:1}, 500);                                  
+        });
+      }
+    });
+    
+    $('#rater').click(function(event){
+      if(inputEnabled)
+      {
+        
+        inputEnabled = false;
+        
+        var ratingAreaWidth = $('#rater').width();
+        var indicatorWidth = $('#indicator').width();
+        var margin = $('#rater').width()*0.020  ;
+        // var indicatorOffset = indicatorWidth/2;
+        
+        
+        
+        var numberWidth = (((event.currentTarget.clientWidth*.88)+20)/10);
+        
+        
+        
+    	  currentSlot = Math.floor((event.layerX-margin) / numberWidth)+1;
+    	  
+    	  //protect from out of range issues caused by margins
+  	    currentSlot = currentSlot > 10 ? 10 : currentSlot;
+  	    currentSlot = currentSlot < 1 ? 1 : currentSlot;
+  	    
+        $('.current-number').html('').animate({opacity:0}, 500, function(){});
+        $('#indicator').animate({left:(((currentSlot-1)*(numberWidth+1))+(margin-3)) + 'px', opacity:1}, 750, function() {
+              // Animation complete.
+              pushCast('testUser', currentSlot, <%=@event.id%>);
+              inputEnabled=true;
+              $('.current-number').html(currentSlot.toString());
+              $('.current-number').animate({opacity:1}, 500);                  
+        });            
+        
+
+      
+      }
+      
+    });
+      
+      var pusher = new Pusher('b98047814c02f83dc79d');
+      var channel = pusher.subscribe('<%=@event.id%>');
+      channel.bind('vote_event', function(data) {
+        
+        var voteRate = data.data.rating-1;
+        var oldValue = chart.series[voteRate].data[voteRate].y
+        var animate = true;
+        if(window.screen.availWidth!=null&&window.screen.availWidth<=480)
+        {
+          animate = false;
+        }
+        chart.series[voteRate].data[voteRate].update(oldValue+1, true, animate);                
+      });
+      
+      
+  });  
+</script>
+
+
+<div id="centerwrap" class="roundeds">
+  <div class="event-title "><h1>ICG IAPP Presentation<h1></div>
+  <div id="content" class="rounded">
+    <div id="vote-header">
+
+    </div>
+    <div class="rating-area">
+      <div id="indicator" class="number-window triangle-border"><div class="number-window-glass"><div class="current-number"></div></div></div>
+      <div id="spectrum-ruler"class="top-rounded">
+        <div id="instructions" class="top-rounded">
+            Tap the Spectrum to Give Feedback
+        </div>
+        <div id="rater" class="rater">
+          <div id="tape">
+            <span class="tape-counter first">1</span>
+            <span class="tape-counter">2</span>
+            <span class="tape-counter">3</span>
+            <span class="tape-counter">4</span>
+            <span class="tape-counter">5</span>
+            <span class="tape-counter">6</span>
+            <span class="tape-counter">7</span>
+            <span class="tape-counter">8</span>
+            <span class="tape-counter">9</span>
+            <span class="tape-counter">10</span>
+          <div>
+        </div>
+      </div>
+    </div>
+  
+    <div id="chart-area">
+      <div id="chart">
+
+      </div>
+      <div id="chartOverlay"></div>
+    </div>
+  
+  
+  </div>        
+</div>
+
+
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Start time utc:</b>
+  <%= @event.start_time_utc %>
+</p>
+
+<p>
+  <b>End time utc:</b>
+  <%= @event.end_time_utc %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %> -->
