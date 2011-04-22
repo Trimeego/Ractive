@@ -4,9 +4,8 @@
   });  
 </script>
 
-<!-- <div id="centerwrap" class="roundeds"> -->
   <div class="event-title "><h1>Events</h1></div>
-  <!-- <div id="content" class="rounded"> -->
+  <div id="content">
     <% @events.each do |event| %>
       <div class='event-table-cell'>
         <div id="title"><%= link_to event.title, event %></div>
@@ -19,10 +18,7 @@
       </div>
     <% end %>
 
-    <%= link_to 'New Event', new_event_path %>
-
-  <!-- </div>        
-</div> -->
+  </div>        
 
 
 
