@@ -1,11 +1,22 @@
-/* @override http://tickitapp.trimeego.com/stylesheets/event.css?1303505743 */
-
 div.event-table-cell {
 	display: block;
 	background-color: #fff;
 	padding: 5px 20px 5px 20px;
 	border-bottom-color: silver;
 	border-bottom-width: 1px;
+	background-image: -webkit-gradient(
+	    linear,
+	    center top,
+	    center bottom,
+	    color-stop(0.80, rgb(255,255,255)),
+	    color-stop(0.99, rgb(230,230,230))
+	);
+	background-image: -moz-linear-gradient(
+	    top center,
+	    rgb(255,255,255) 6%,
+	    rgb(170,170,170) 50%
+	);	
+	
 }
 
 div.event-table-cell #title {
