@@ -1,3 +1,5 @@
+<%=@event.vote_histogram.to_json%>
+
 <script type="text/javascript" charset="utf-8">
   var ratingAreaLeftMargin = 20;
   var numberWidth = 52;
@@ -7,7 +9,7 @@
   
   $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
-    var chartSourceData = [0,0,0,0,0,0,0,0,0,0];
+    var chartSourceData = <%=@event.vote_histogram.to_json%>;
     var chartData = [];
     var chartColors = ['#C3443C', '#C35D3C', '#C3773C', '#C3913C', '#C3AA3C', '#B8B93C', '#A1BC3C', '#88BE3C', '#70C03C', '#5AC23C']
     
@@ -174,7 +176,7 @@
 
 
 <div id="centerwrap" class="roundeds">
-  <div class="event-title "><h1>ICG IAPP Presentation<h1></div>
+  <div class="event-title "><h1><%=@event.title%><h1></div>
   <div id="content" class="rounded">
     <div id="vote-header">
 

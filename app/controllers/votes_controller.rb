@@ -38,14 +38,14 @@ class VotesController < ApplicationController
   # GET /votes/1/edit
   def edit
     @event = Event.find(params[:event_id])
-    @vote = Vote.find(params[:id])
+    @vote = @event.votes.find(params[:id])
   end
 
   # POST /votes
   # POST /votes.xml
   def create
     @event = Event.find(params[:event_id])
-    @vote = Vote.new(params[:vote])
+    @vote = @event.votes.new(params[:vote])
     respond_to do |format|
       if @vote.save
         #write the pusher even now.  TODO:  look into another method for doing this like socket IO
