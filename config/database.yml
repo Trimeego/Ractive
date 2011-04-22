@@ -16,9 +16,9 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
-  database: temp_production
+  database: ractive_production
   username: ractive
   password: ractive877
   socket: /tmp/mysql.sock
