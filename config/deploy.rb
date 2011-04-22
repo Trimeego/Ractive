@@ -6,6 +6,7 @@ set :use_sudo, false
 set :scm, "git"
 set :user, "deploy"
 
+set :rake, "/usr/local/rvm/gems/ruby-1.9.2-p180/bin/rake"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "50.56.74.8"                          # Your HTTP server, Apache/etc
