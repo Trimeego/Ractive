@@ -1,31 +1,29 @@
-<h1>Listing events</h1>
+<script type="text/javascript" charset="utf-8">  
+  $('document').ready(function(){
+      
+  });  
+</script>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>Start time utc</th>
-    <th>End time utc</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<!-- <div id="centerwrap" class="roundeds"> -->
+  <div class="event-title "><h1>Events</h1></div>
+  <!-- <div id="content" class="rounded"> -->
+    <% @events.each do |event| %>
+      <div class='event-table-cell'>
+        <div id="title"><%= event.title %></div>
+        <div id="description"><%= event.description %></div>
+        <div id='details'>
+        <div id="location"><label>Where</label><%= event.location %></div>
+        <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
+        <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
+        </div>
+      </div>
+    <% end %>
 
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td><%= event.location %></td>
-    <td><%= event.description %></td>
-    <td><%= event.start_time_utc %></td>
-    <td><%= event.end_time_utc %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <%= link_to 'New Event', new_event_path %>
 
-<br />
+  <!-- </div>        
+</div> -->
 
-<%= link_to 'New Event', new_event_path %>
+
+
+
