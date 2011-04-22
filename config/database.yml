@@ -21,4 +21,4 @@ production:
   database: ractive_production
   username: ractive
   password: ractive877
-  #socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
