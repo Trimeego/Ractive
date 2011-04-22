@@ -2,7 +2,7 @@ div.event-table-cell {
 	display: block;
 	background-color: #fff;
 	padding: 5px 20px 5px 20px;	
-	height: 90px;
+	height: 100px;
 }
 
 div.event-table-cell #title {
@@ -13,6 +13,7 @@ div.event-table-cell #title {
 div.event-table-cell #details {
 	width:30%;
 	text-align: right;
+	float: right;
 }
 
 div.event-table-cell label {
@@ -24,10 +25,11 @@ div.event-table-cell label {
 }
 
 div#description {
+	margin-top: 10px;
 	width: 50%;
 	height: 60px;
 	overflow: hidden;
-	
+	float: left;
 }
 
 div.event-table-cell #start-time {
