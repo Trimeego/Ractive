@@ -1,8 +1,11 @@
+/* @override http://tickitapp.trimeego.com/stylesheets/event.css?1303505743 */
+
 div.event-table-cell {
 	display: block;
 	background-color: #fff;
-	padding: 5px 20px 5px 20px;	
-	height: 100px;
+	padding: 5px 20px 5px 20px;
+	border-bottom-color: silver;
+	border-bottom-width: 1px;
 }
 
 div.event-table-cell #title {
@@ -11,32 +14,31 @@ div.event-table-cell #title {
 }
 
 div.event-table-cell #details {
-	width:30%;
-	text-align: right;
-	float: right;
+	text-align: left;
 }
 
 div.event-table-cell label {
 	display: inline-block;
-	width: 100px;
+	margin: 0px 5px 0px 10px;
 	padding-right: 5px;
 	text-align: right;
 	color: #7f7f7f;
+	font-size: 14px;
 }
 
 div#description {
-	margin-top: 10px;
-	width: 50%;
-	height: 60px;
+	margin: 10px;
 	overflow: hidden;
-	float: left;
 }
 
 div.event-table-cell #start-time {
+	display: inline-block;
 }
 
 div.event-table-cell #location {
+	display: inline;
 }
 
 div.event-table-cell #end-time {
+	display: inline-block;
 }
