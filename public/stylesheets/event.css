@@ -1,3 +1,16 @@
+#event-content {
+	width:100%;
+	min-height: 300px;
+	margin:0;
+	padding:0;
+    top:30px;
+    left:0px;
+    margin: 12px 0px 2px 0px;
+    padding:0px 0px 10px 0px;
+	background-color: #000;
+    position:absolute;
+}
+
 div.event-table-cell {
 	display: block;
 	background-color: #fff;
