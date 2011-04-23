@@ -140,6 +140,13 @@ $(function () {
               inputEnabled=true;
               $('.current-number').html(currentSlot.toString());
               $('.current-number').animate({opacity:1}, 500);                  
+
+              var voteRate = currentSlot-1;
+              var series = chartSourceData[voteRate];
+              var oldScore = series['data'][0][1];
+              series['data'][0][1] = series['data'][0][1] + 1 
+              plotWithOptions();
+
         });            
         
 
@@ -243,11 +250,11 @@ $(function () {
     var channel = pusher.subscribe('<%=@event.id%>');
     channel.bind('vote_event', function(data) {
       
-      var voteRate = data.data.rating-1;
-      var series = chartSourceData[voteRate];
-      var oldScore = series['data'][0][1];
-      series['data'][0][1] = series['data'][0][1] + 1 
-      plotWithOptions();
+      // var voteRate = data.data.rating-1;
+      // var series = chartSourceData[voteRate];
+      // var oldScore = series['data'][0][1];
+      // series['data'][0][1] = series['data'][0][1] + 1 
+      // plotWithOptions();
     });
       
       
