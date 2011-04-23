@@ -1,13 +1,57 @@
+
+
+<div id="centerwrap" class="roundeds">
+  <div class="event-title "><h1><%=@event.title%><h1></div>
+  <div id="content" class="rounded">
+    <div id="vote-header">
+
+    </div>
+    <div class="rating-area">
+      <div id="indicator" class="number-window triangle-border"><div class="number-window-glass"><div class="current-number"></div></div></div>
+      <div id="spectrum-ruler"class="top-rounded">
+        <div id="instructions" class="top-rounded">
+            Tap the Spectrum to Give Feedback
+        </div>
+        <div id="rater" class="rater">
+          <div id="tape">
+            <span class="tape-counter first">1</span>
+            <span class="tape-counter">2</span>
+            <span class="tape-counter">3</span>
+            <span class="tape-counter">4</span>
+            <span class="tape-counter">5</span>
+            <span class="tape-counter">6</span>
+            <span class="tape-counter">7</span>
+            <span class="tape-counter">8</span>
+            <span class="tape-counter">9</span>
+            <span class="tape-counter">10</span>
+          <div>
+        </div>
+      </div>
+    </div>
+  
+    <div id="chart-area">
+      <div id="chart">
+
+      </div>
+      <div id="chartOverlay"></div>
+    </div>
+  
+  
+  </div>        
+</div>
+
+
 <script type="text/javascript" charset="utf-8">
   var ratingAreaLeftMargin = 20;
   var numberWidth = 52;
   var inputEnabled = true;
 
   
-  $(function () {
+  // $(function () {
   // $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
     alert('point 1')
+    
     var chartSourceData = <%=@event.vote_histogram.to_json%>;
     var chartData = [];
     var chartColors = ['#C3443C', '#C35D3C', '#C3773C', '#C3913C', '#C3AA3C', '#B8B93C', '#A1BC3C', '#88BE3C', '#70C03C', '#5AC23C']
@@ -175,46 +219,5 @@
       
       
       
-  });  
+  // });  
 </script>
-
-
-<div id="centerwrap" class="roundeds">
-  <div class="event-title "><h1><%=@event.title%><h1></div>
-  <div id="content" class="rounded">
-    <div id="vote-header">
-
-    </div>
-    <div class="rating-area">
-      <div id="indicator" class="number-window triangle-border"><div class="number-window-glass"><div class="current-number"></div></div></div>
-      <div id="spectrum-ruler"class="top-rounded">
-        <div id="instructions" class="top-rounded">
-            Tap the Spectrum to Give Feedback
-        </div>
-        <div id="rater" class="rater">
-          <div id="tape">
-            <span class="tape-counter first">1</span>
-            <span class="tape-counter">2</span>
-            <span class="tape-counter">3</span>
-            <span class="tape-counter">4</span>
-            <span class="tape-counter">5</span>
-            <span class="tape-counter">6</span>
-            <span class="tape-counter">7</span>
-            <span class="tape-counter">8</span>
-            <span class="tape-counter">9</span>
-            <span class="tape-counter">10</span>
-          <div>
-        </div>
-      </div>
-    </div>
-  
-    <div id="chart-area">
-      <div id="chart">
-
-      </div>
-      <div id="chartOverlay"></div>
-    </div>
-  
-  
-  </div>        
-</div>
