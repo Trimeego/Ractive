@@ -7,6 +7,7 @@
   $(function () {
   // $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
+    alert('point 1')
     var chartSourceData = <%=@event.vote_histogram.to_json%>;
     var chartData = [];
     var chartColors = ['#C3443C', '#C35D3C', '#C3773C', '#C3913C', '#C3AA3C', '#B8B93C', '#A1BC3C', '#88BE3C', '#70C03C', '#5AC23C']
@@ -27,6 +28,84 @@
       chartData.push(seriesData);
     }
     
+
+    function pushCast(user, rating, event_id){
+
+    		url = 'http://simple-rpm.heroku.com/rater/' + channel + '?user=' + user + '&rating=' + rating;
+
+        var vote_submit_url = '/events/<%=@event.id%>/votes/'
+
+    		$.ajax({
+        	url: vote_submit_url,
+        	dataType: "json",
+        	type: "POST",
+        	processData: false,
+        	contentType: "application/json",
+        	data: "{\"vote\":{\"nickname\":\"" + user + "\", \"rating\":" + rating + "}}",
+    			success:function(data){
+    			},
+    			error:function(error){
+    			}
+
+    		});
+    }
+
+    
+    var currentSlot = -1
+    $('#indicator').click(function(){
+      if(inputEnabled)
+      {
+        
+        inputEnabled = false;
+        pushCast('testUser', currentSlot, <%=@event.id%>);
+        $('.current-number').html('').animate({opacity:0}, 500, function(){
+          inputEnabled=true;
+          $('.current-number').html(currentSlot.toString());
+          $('.current-number').animate({opacity:1}, 500);                                  
+        });
+      }
+    });
+    
+    $('#rater').click(function(event){
+      
+      if(inputEnabled)
+      {
+        
+        inputEnabled = false;
+        
+        var ratingAreaWidth = $('#rater').width();
+        var indicatorWidth = $('#indicator').width();
+        var margin = $('#rater').width()*0.020  ;
+        // var indicatorOffset = indicatorWidth/2;
+        
+        
+        
+        var numberWidth = (((event.currentTarget.clientWidth*.88)+20)/10);
+        
+        
+        
+    	  currentSlot = Math.floor((event.layerX-margin) / numberWidth)+1;
+    	  
+    	  //protect from out of range issues caused by margins
+  	    currentSlot = currentSlot > 10 ? 10 : currentSlot;
+  	    currentSlot = currentSlot < 1 ? 1 : currentSlot;
+  	    
+        $('.current-number').html('').animate({opacity:0}, 500, function(){});
+        $('#indicator').animate({left:(((currentSlot-1)*(numberWidth+1))+(margin-3)) + 'px', opacity:1}, 750, function() {
+              // Animation complete.
+              pushCast('testUser', currentSlot, <%=@event.id%>);
+              inputEnabled=true;
+              $('.current-number').html(currentSlot.toString());
+              $('.current-number').animate({opacity:1}, 500);                  
+        });            
+        
+
+      
+      }
+      
+    });
+      
+      
     var chart = new Highcharts.Chart({
         chart: {
             renderTo: 'chart',
@@ -76,97 +155,24 @@
           {data: chartData[8], stack:0},
           {data: chartData[9], stack:0}
         ]
-    });
- 
- 
-    function pushCast(user, rating, event_id){
-
-    		url = 'http://simple-rpm.heroku.com/rater/' + channel + '?user=' + user + '&rating=' + rating;
-
-        var vote_submit_url = '/events/<%=@event.id%>/votes/'
-
-    		$.ajax({
-        	url: vote_submit_url,
-        	dataType: "json",
-        	type: "POST",
-        	processData: false,
-        	contentType: "application/json",
-        	data: "{\"vote\":{\"nickname\":\"" + user + "\", \"rating\":" + rating + "}}",
-    			success:function(data){
-    			},
-    			error:function(error){
-    			}
-
-    		});
-    }
-
-    
-    var currentSlot = -1
-    $('#indicator').click(function(){
-      if(inputEnabled)
+    });      
+      
+      
+    var pusher = new Pusher('b98047814c02f83dc79d');
+    var channel = pusher.subscribe('<%=@event.id%>');
+    channel.bind('vote_event', function(data) {
+      
+      var voteRate = data.data.rating-1;
+      var oldValue = chart.series[voteRate].data[voteRate].y
+      var animate = true;
+      if(window.screen.availWidth!=null&&window.screen.availWidth<=480)
       {
-        
-        inputEnabled = false;
-        pushCast('testUser', currentSlot, <%=@event.id%>);
-        $('.current-number').html('').animate({opacity:0}, 500, function(){
-          inputEnabled=true;
-          $('.current-number').html(currentSlot.toString());
-          $('.current-number').animate({opacity:1}, 500);                                  
-        });
+        animate = false;
       }
-    });
-    
-    $('#rater').click(function(event){
-      if(inputEnabled)
-      {
-        
-        inputEnabled = false;
-        
-        var ratingAreaWidth = $('#rater').width();
-        var indicatorWidth = $('#indicator').width();
-        var margin = $('#rater').width()*0.020  ;
-        // var indicatorOffset = indicatorWidth/2;
-        
-        
-        
-        var numberWidth = (((event.currentTarget.clientWidth*.88)+20)/10);
-        
-        
-        
-    	  currentSlot = Math.floor((event.layerX-margin) / numberWidth)+1;
-    	  
-    	  //protect from out of range issues caused by margins
-  	    currentSlot = currentSlot > 10 ? 10 : currentSlot;
-  	    currentSlot = currentSlot < 1 ? 1 : currentSlot;
-  	    
-        $('.current-number').html('').animate({opacity:0}, 500, function(){});
-        $('#indicator').animate({left:(((currentSlot-1)*(numberWidth+1))+(margin-3)) + 'px', opacity:1}, 750, function() {
-              // Animation complete.
-              pushCast('testUser', currentSlot, <%=@event.id%>);
-              inputEnabled=true;
-              $('.current-number').html(currentSlot.toString());
-              $('.current-number').animate({opacity:1}, 500);                  
-        });            
-        
-
-      
-      }
-      
+      chart.series[voteRate].data[voteRate].update(oldValue+1, true, animate);                
     });
       
-      var pusher = new Pusher('b98047814c02f83dc79d');
-      var channel = pusher.subscribe('<%=@event.id%>');
-      channel.bind('vote_event', function(data) {
-        
-        var voteRate = data.data.rating-1;
-        var oldValue = chart.series[voteRate].data[voteRate].y
-        var animate = true;
-        if(window.screen.availWidth!=null&&window.screen.availWidth<=480)
-        {
-          animate = false;
-        }
-        chart.series[voteRate].data[voteRate].update(oldValue+1, true, animate);                
-      });
+      
       
       
   });  
