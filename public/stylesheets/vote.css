@@ -70,7 +70,7 @@ div.event-title {
 div.event-title h1 {
 	margin: 0px 0px 0px 0px;
 	padding: 10px 5px 5px 5px;
-	font-size: 12pt;
+	font-size: 14pt;
 	text-align: center;
 	color: #000;
 }
@@ -164,7 +164,7 @@ div.number-window {
 
 div#instructions {
 	padding: 10px 10px 10px 10px;
-	font-size: 13pt;
+	font-size: 11pt;
 	font-weight: bold;
 	text-align: center;
 	height: 20px;
