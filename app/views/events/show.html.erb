@@ -50,27 +50,26 @@
 $(function () {
   // $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
-    alert('point 1')
     
-    var chartSourceData = <%=@event.vote_histogram.to_json%>;
+    var chartSourceData = <%=j @event.vote_histogram.to_json%>;
     var chartData = [];
     var chartColors = ['#C3443C', '#C35D3C', '#C3773C', '#C3913C', '#C3AA3C', '#B8B93C', '#A1BC3C', '#88BE3C', '#70C03C', '#5AC23C']
     
-    for(var d=0;d<chartSourceData.length;d++)
-    {
-      var seriesData = [];
-      for(var d2=0;d2<chartSourceData.length;d2++)
-      {
-          if(d2==d){
-            seriesData.push(chartSourceData[d2]);
-          }
-          else
-          {
-            seriesData.push(0);
-          }
-      }
-      chartData.push(seriesData);
-    }
+    // for(var d=0;d<chartSourceData.length;d++)
+    // {
+    //   var seriesData = [];
+    //   for(var d2=0;d2<chartSourceData.length;d2++)
+    //   {
+    //       if(d2==d){
+    //         seriesData.push(chartSourceData[d2]);
+    //       }
+    //       else
+    //       {
+    //         seriesData.push([d2, 0]);
+    //       }
+    //   }
+    //   chartData.push(seriesData);
+    // }
     
 
     function pushCast(user, rating, event_id){
@@ -148,58 +147,96 @@ $(function () {
       }
       
     });
+
+
+    var d1 = [];
+    for (var i = 0; i <= 10; i += 1)
+        d1.push([i, parseInt(Math.random() * 30)]);
+ 
+    var d2 = [];
+    for (var i = 0; i <= 10; i += 1)
+        d2.push([i, parseInt(Math.random() * 30)]);
+ 
+    var d3 = [];
+    for (var i = 0; i <= 10; i += 1)
+        d3.push([i, parseInt(Math.random() * 30)]);
+ 
+    var stack = true, bars = true, lines = false, steps = false;
+    function plotWithOptions() {
+        $.plot($("#chart"), chartSourceData, {
+            series: {
+                stack: stack,
+                lines: { show: lines, fill: true, steps: steps },
+                bars: { show: bars, barWidth: 0.6 }
+            }
+        });
+    }
       
       
-    var chart = new Highcharts.Chart({
-        chart: {
-            renderTo: 'chart',
-            defaultSeriesType: 'column',
-            backgroundColor: '#000000'
-        },
-        title: {text:'Incoming Feedback'},
-        colors:chartColors,
-        credits: {enabled:false},
-        xAxis: {
-            categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-        },
-        yAxis: { 
-          title:{ text:null }
-        },
-        legend: {
-            enabled: false,
-            layout: 'vertical',
-            backgroundColor: '#FFFFFF',
-            floating: true,
-            style: {
-                left: '100px',
-                top: '70px',
-                bottom: 'auto'
-            }
-        },
-        tooltip: {
-            formatter: function() {
-                return '<b>'+ this.x +'</b><br/>'+
-                    + this.y;
-            }
-        },
-        plotOptions: {
-          column: {
-                      stacking: 'normal'
-                  }                  
-        },
-        series: [
-          {data: chartData[0], stack:0},
-          {data: chartData[1], stack:0},
-          {data: chartData[2], stack:0},
-          {data: chartData[3], stack:0},
-          {data: chartData[4], stack:0},
-          {data: chartData[5], stack:0},
-          {data: chartData[6], stack:0},
-          {data: chartData[7], stack:0},
-          {data: chartData[8], stack:0},
-          {data: chartData[9], stack:0}
-        ]
-    });      
+    // var stack = true, bars = true, lines = false, steps = false;
+    //   
+    // function plotWithOptions() {
+    //     $.plot($("#chart"), chartData, {
+    //         series: {
+    //             stack: stack,
+    //             lines: { show: lines, fill: true, steps: steps },
+    //             bars: { show: bars, barWidth: 0.6 }
+    //         }
+    //     });
+    // }
+    //   
+     plotWithOptions();
+      
+    // var chart = new Highcharts.Chart({
+    //     chart: {
+    //         renderTo: 'chart',
+    //         defaultSeriesType: 'column',
+    //         backgroundColor: '#000000'
+    //     },
+    //     title: {text:'Incoming Feedback'},
+    //     colors:chartColors,
+    //     credits: {enabled:false},
+    //     xAxis: {
+    //         categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+    //     },
+    //     yAxis: { 
+    //       title:{ text:null }
+    //     },
+    //     legend: {
+    //         enabled: false,
+    //         layout: 'vertical',
+    //         backgroundColor: '#FFFFFF',
+    //         floating: true,
+    //         style: {
+    //             left: '100px',
+    //             top: '70px',
+    //             bottom: 'auto'
+    //         }
+    //     },
+    //     tooltip: {
+    //         formatter: function() {
+    //             return '<b>'+ this.x +'</b><br/>'+
+    //                 + this.y;
+    //         }
+    //     },
+    //     plotOptions: {
+    //       column: {
+    //                   stacking: 'normal'
+    //               }                  
+    //     },
+    //     series: [
+    //       {data: chartData[0], stack:0},
+    //       {data: chartData[1], stack:0},
+    //       {data: chartData[2], stack:0},
+    //       {data: chartData[3], stack:0},
+    //       {data: chartData[4], stack:0},
+    //       {data: chartData[5], stack:0},
+    //       {data: chartData[6], stack:0},
+    //       {data: chartData[7], stack:0},
+    //       {data: chartData[8], stack:0},
+    //       {data: chartData[9], stack:0}
+    //     ]
+    // });      
       
       
     var pusher = new Pusher('b98047814c02f83dc79d');
@@ -207,13 +244,10 @@ $(function () {
     channel.bind('vote_event', function(data) {
       
       var voteRate = data.data.rating-1;
-      var oldValue = chart.series[voteRate].data[voteRate].y
-      var animate = true;
-      if(window.screen.availWidth!=null&&window.screen.availWidth<=480)
-      {
-        animate = false;
-      }
-      chart.series[voteRate].data[voteRate].update(oldValue+1, true, animate);                
+      var series = chartSourceData[voteRate];
+      var oldScore = series['data'][0][1];
+      series['data'][0][1] = series['data'][0][1] + 1 
+      plotWithOptions();
     });
       
       

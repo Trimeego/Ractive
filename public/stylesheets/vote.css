@@ -70,7 +70,7 @@ div.event-title {
 div.event-title h1 {
 	margin: 0px 0px 0px 0px;
 	padding: 10px 5px 5px 5px;
-	font-size: 16pt;
+	font-size: 14pt;
 	text-align: center;
 	color: #000;
 }
@@ -79,7 +79,8 @@ div.event-title h1 {
 /* end hack */
 
 #chart{
-	height: 100%;
+  margin:10px;
+	height: 90%;
 }
 
 #chartOverlay{
@@ -87,6 +88,7 @@ div.event-title h1 {
 	top: 0px;
 	width: 100%;
 	height: 100%;
+	padding: 5px;
 }
 #chart-area {
 	position: absolute; 	
