@@ -1,3 +1,5 @@
+/* @override http://tickitapp.trimeego.com/stylesheets/event.css?1303664170 */
+
 #event-content {
 	width:100%;
 	min-height: 300px;
@@ -67,7 +69,7 @@ div.event-table-cell #end-time {
 	display: inline-block;
 }
 
-div.leftNav{
+div.rightNav{
 	float: left;
 	height:  23px;
 	margin: 7px  0px 0px 5px;
@@ -84,7 +86,7 @@ div.leftNav{
 	    center top,
 	    center bottom,
 	    color-stop(0.00, hsl(240, 83%, 100%)),
-	    color-stop(1.0 hsl(240, 83%, 30%))
+	    color-stop(1.0, hsl(240, 83%, 30%))
 	);
 	background-image: -moz-linear-gradient(
 	    t center,
@@ -101,7 +103,7 @@ div.leftNav a{
 }
 
 
-div.rightNav{
+div.rigshtNav{
 	float: right;
 	height:  23px;
 	margin: 7px  0px 0px 5px;
@@ -118,7 +120,7 @@ div.rightNav{
 	    center top,
 	    center bottom,
 	    color-stop(0.00, hsl(240, 83%, 100%)),
-	    color-stop(1.0 hsl(240, 83%, 30%))
+	    color-stop(1.0, hsl(240, 83%, 30%))
 	);
 	background-image: -moz-linear-gradient(
 	    t center,
