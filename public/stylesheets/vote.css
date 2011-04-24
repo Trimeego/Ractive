@@ -296,8 +296,8 @@ div.leftNav{
 	    linear,
 	    center top,
 	    center bottom,
-	    color-stop(0.00, hsl(240, 82%, 100%)),
-	    color-stop(1.0 hsl(240, 83%, 50%))
+	    color-stop(0.00, hsl(240, 83%, 100%)),
+	    color-stop(1.0 hsl(240, 83%, 30%))
 	);
 	background-image: -moz-linear-gradient(
 	    t center,
