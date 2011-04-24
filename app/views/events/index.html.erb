@@ -11,10 +11,21 @@
         <div id="title"><%= link_to event.title, event %></div>
         <div id="description"><%= event.description %></div>
         <div id='details'>
-        <div id="location"><label>Where</label><%= event.location %></div>
-        <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
-        <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
+          <div id="location"><label>Where</label><%= event.location %></div>
+          <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
+          <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
         </div>
+        <% if @admin_mode %>
+          <div class="admin">
+          <%= link_to 'Edit', edit_event_path(tickit) %>
+          <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @admin_mode %>
+      <div class="admin">
+        <%= link_to 'Add New Event', new_event_path() %>
       </div>
     <% end %>
 
