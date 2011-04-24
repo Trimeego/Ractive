@@ -178,14 +178,17 @@
     channel.bind('vote_event', function(data) {
       liveUpdateAvailable = true;
       var voteRate = data.data.rating-1;
-      var series = chartData[voteRate];
-      var oldScore = series['data'][0][1];
-      series['data'][0][1] = series['data'][0][1] + 1 
-      plotWithOptions();
+      if(voteRate>0)
+      {
+        var series = chartData[voteRate];
+        var oldScore = series['data'][0][1];
+        series['data'][0][1] = series['data'][0][1] + 1 
+        plotWithOptions();        
+      }
     });
     
-    
-      
+    //send a quick message to trigger the liveupdate
+    pushCast('testUser', -1, <%=@event.id%>);  
       
     populateChart();
       
