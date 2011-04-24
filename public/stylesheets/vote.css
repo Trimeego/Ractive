@@ -291,8 +291,6 @@ div.leftNav{
     border-radius:10px;
 	border: 1px solid #cbcbcb;
 	background-color: #2d2bfa;
-	color: #16157d;
-	text-decoration: none;
 	font-size: 15px;
 	background-image: -webkit-gradient(
 	    linear,
@@ -307,6 +305,12 @@ div.leftNav{
 	    rgb(22, 21, 125) 100%
 	);
 	
+}
+
+div.leftNav a{
+	color: #16157d;
+	text-decoration: none;
+	font-size: 15px;
 }
 
 
