@@ -280,7 +280,7 @@ div.rater {
 	
 }
 
-div.leftNav a {
+div.leftNav{
 	float: left;
 	height:  23px;
 	margin: 7px  0px 0px 10px;
@@ -291,9 +291,22 @@ div.leftNav a {
     border-radius:10px;
 	border: 1px solid #cbcbcb;
 	background-color: #2d2bfa;
-	color: #fffeff;
+	color: #16157d;
 	text-decoration: none;
 	font-size: 15px;
+	background-image: -webkit-gradient(
+	    linear,
+	    center top,
+	    center bottom,
+	    color-stop(0.00, hsl(240, 82%, 100%)),
+	    color-stop(1.0 hsl(240, 83%, 50%))
+	);
+	background-image: -moz-linear-gradient(
+	    t center,
+	    rgb(45, 45, 255) 0%,
+	    rgb(22, 21, 125) 100%
+	);
+	
 }
 
 
