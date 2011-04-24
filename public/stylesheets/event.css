@@ -79,7 +79,7 @@ div.event-table-cell #end-time {
 	display: inline-block;
 }
 
-div.rightNav{
+div.leftNav{
 	float: left;
 	height:  23px;
 	margin: 7px  0px 0px 5px;
@@ -113,7 +113,7 @@ div.leftNav a{
 }
 
 
-div.rigshtNav{
+div.rightNav{
 	float: right;
 	height:  23px;
 	margin: 7px  0px 0px 5px;
