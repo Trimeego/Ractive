@@ -158,12 +158,15 @@
               inputEnabled=true;
               $('.current-number').html(currentSlot.toString());
               $('.current-number').animate({opacity:1}, 500);                  
-
-              var voteRate = currentSlot-1;
-              var series = chartData[voteRate];
-              var oldScore = series['data'][0][1];
-              series['data'][0][1] = series['data'][0][1] + 1 
-              plotWithOptions();
+              if(!liveUpdateAvailable)
+              {
+                // If live update is not available go ahead and increment the chart value to give the user feedback.
+                var voteRate = currentSlot-1;
+                var series = chartData[voteRate];
+                var oldScore = series['data'][0][1];
+                series['data'][0][1] = series['data'][0][1] + 1 
+                plotWithOptions();                
+              }
 
         });            
         
