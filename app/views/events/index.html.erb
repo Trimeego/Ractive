@@ -4,7 +4,13 @@
   });  
 </script>
 
-  <div class="event-title "><h1>Events</h1></div>
+  <div class="event-title "><h1>Events</h1>
+    <% if @admin_mode %>
+      <div class="rightNav">
+        <%= link_to 'Add', new_event_path() %>
+      </div>
+    <% end %>    
+  </div>
   <div id="event-content">
     <% @events.each do |event| %>
       <div class='event-table-cell'>
@@ -21,11 +27,6 @@
           <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>
           </div>
         <% end %>
-      </div>
-    <% end %>
-    <% if @admin_mode %>
-      <div class="admin">
-        <%= link_to 'Add New Event', new_event_path() %>
       </div>
     <% end %>
 
