@@ -181,7 +181,7 @@
     channel.bind('vote_event', function(data) {
       liveUpdateAvailable = true;
       var voteRate = data.data.rating-1;
-      if(voteRate>0)
+      if(voteRate>-1)
       {
         var series = chartData[voteRate];
         var oldScore = series['data'][0][1];
