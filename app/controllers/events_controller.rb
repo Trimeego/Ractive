@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   # GET /events.xml
   def index
     @events = Event.all
-    @admin_password = params[:admin_password]
-    
+    @admin_mode = params[:admin]
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
