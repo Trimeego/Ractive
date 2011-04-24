@@ -1,3 +1,5 @@
+/* @override http://tickitapp.trimeego.com/stylesheets/vote.css?1303665271 */
+
 /* @override http://localhost:3000/stylesheets/vote.css?1303587703 */
 
 html, body {
@@ -180,7 +182,7 @@ div#spectrum-ruler {
 	
 }
 div#tape {
-	width: 102%;
+	margin:  0px auto;
 }
 
 .tape-counter{
@@ -229,7 +231,7 @@ div.rater {
     height: 50px;
     background-image: -webkit-gradient(linear, 0% 100%, 100% 100%, from(hsl(0, 53%, 50%)),color-stop(50%, hsl(55, 53%, 50%)),to(hsl(110, 53%, 50%)));
     vertical-align: middle;
-    padding:  0px 2.5% 0px 1.5%;    
+    padding:  0px 1.5% 0px 3.5%;    
 	background-image: -webkit-gradient(
 	    linear,
 	    right top,
