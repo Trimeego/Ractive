@@ -3,23 +3,23 @@ class VotesController < ApplicationController
   # GET /votes.xml
   def index
     @event = Event.find(params[:event_id])
-    @votes = Vote.all
+    @votes = @event.votes.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @votes }
+      format.json { render :json => @votes }
     end
   end
 
-  # GET /votes/1
-  # GET /votes/1.xml
-  def show
+  def graph
     @event = Event.find(params[:event_id])
-    @vote = Vote.find(params[:id])
+    @votes = @event.vote_histogram
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @vote }
+      format.html # index.html.erb
+      format.xml  { render :xml => @votes }
+      format.json { render :json => @votes }
     end
   end
 
@@ -28,18 +28,13 @@ class VotesController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @vote = Vote.new
-
+  
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @vote }
     end
   end
 
-  # GET /votes/1/edit
-  def edit
-    @event = Event.find(params[:event_id])
-    @vote = @event.votes.find(params[:id])
-  end
 
   # POST /votes
   # POST /votes.xml
@@ -65,33 +60,4 @@ class VotesController < ApplicationController
     end
   end
 
-  # PUT /votes/1
-  # PUT /votes/1.xml
-  def update
-    @event = Event.find(params[:event_id])
-    @vote = Vote.find(params[:id])
-
-    respond_to do |format|
-      if @vote.update_attributes(params[:vote])
-        format.html { redirect_to(@vote, :notice => 'Vote was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @vote.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /votes/1
-  # DELETE /votes/1.xml
-  def destroy
-    @event = Event.find(params[:event_id])
-    @vote = Vote.find(params[:id])
-    @vote.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(votes_url) }
-      format.xml  { head :ok }
-    end
-  end
 end

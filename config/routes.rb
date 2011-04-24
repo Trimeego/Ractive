@@ -2,8 +2,11 @@ Ractive::Application.routes.draw do
   root :to => 'events#index'
 
   resources :events do
+    
     resources :votes    
   end
+
+  match 'events/:event_id/graph' => 'votes#graph', :as => :graph
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
