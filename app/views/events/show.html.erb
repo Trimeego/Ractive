@@ -151,13 +151,13 @@
         currentSlot = parseInt($this.html());
         // var indicatorOffset = indicatorWidth/2;
   	    
-        $('.current-number').html('').animate({opacity:0}, 500, function(){});
-        $('#indicator').animate({left:newPos + 'px', opacity:1}, 750, function() {
+        $('.current-number').html('').animate({opacity:0}, 300, function(){});
+        $('#indicator').animate({left:newPos + 'px', opacity:1}, 500, function() {
               // Animation complete.
               pushCast('testUser', currentSlot, <%=@event.id%>);
               inputEnabled=true;
               $('.current-number').html(currentSlot.toString());
-              $('.current-number').animate({opacity:1}, 500);                  
+              $('.current-number').animate({opacity:1}, 300);                  
               if(!liveUpdateAvailable)
               {
                 // If live update is not available go ahead and increment the chart value to give the user feedback.
