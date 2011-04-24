@@ -15,7 +15,7 @@
           <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
           <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
         </div>
-        <% if @admin_mode== %>
+        <% if @admin_mode %>
           <div class="admin">
           <%= link_to 'Edit', edit_event_path(event) %>
           <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>
