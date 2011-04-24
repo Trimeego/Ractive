@@ -15,7 +15,7 @@
           <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
           <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
         </div>
-        <% if @admin_mode %>
+        <% if @admin_password=='starbucks' %>
           <div class="admin">
           <%= link_to 'Edit', edit_event_path(tickit) %>
           <%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %>
@@ -23,7 +23,7 @@
         <% end %>
       </div>
     <% end %>
-    <% if @admin_mode %>
+    <% if @admin_password=='starbucks' %>
       <div class="admin">
         <%= link_to 'Add New Event', new_event_path() %>
       </div>
