@@ -1,3 +1,5 @@
+/* @override http://tickitapp.trimeego.com/stylesheets/event.css?1303664514 */
+
 /* @override http://tickitapp.trimeego.com/stylesheets/event.css?1303664170 */
 
 #event-content {
@@ -11,6 +13,14 @@
     padding:0px 0px 10px 0px;
 	background-color: #000;
     position:absolute;
+}
+
+h1 {
+	color: whitesmoke;		
+}
+
+div.field label {
+	color: whitesmoke;	
 }
 
 div.event-table-cell {
