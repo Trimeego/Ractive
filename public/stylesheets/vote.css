@@ -178,10 +178,9 @@ div#instructions {
 }	
 
 div#spectrum-ruler {
-	background-color: #fff;
-	border: 1px solid silver;
-	
+	background-color: #fff;	
 }
+
 div#tape {
 	margin:  0px auto;
 }
