@@ -3,35 +3,47 @@
       
   });  
 </script>
+<div data-role="page" data-url id="bar" class="ui-page ui-body-c ui-page-active">
 
-  <div class="event-title ">
+	<div data-role="header" data-theme="a">
     <% if @admin_mode %>
-      <div class="rightNav">
-        <%= link_to 'Add', new_event_path() %>
-      </div>
+      <a href="<%=new_event_path()%>" class="ui-btn-right ui-btn ui-btn-up-a ui-btn-icon-left ui-btn-corner-all ui-shadow" data-rel="forward" data-icon="plus" data-theme="c" rel="external"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Add</span><span class="ui-icon ui-icon-plus ui-icon-shadow"></span></span></a>
     <% end %>    
-    <h1>Events</h1>
-  </div>
-  <div id="event-content">
-    <% @events.each do |event| %>
-      <div class='event-table-cell'>
-        <div id="title"><%= link_to event.title, event %></div>
-        <div id="description"><%= event.description %></div>
-        <div id='details'>
-          <div id="location"><label>Where</label><%= event.location %></div>
-          <div id="start-time"><label>Starts</label><%= event.start_time_utc.localtime.to_formatted_s(:short) %></div>
-          <div id="end-time"><label>Ends</label><%= event.end_time_utc.localtime.to_formatted_s(:short) %></div>
-        </div>
-        <% if @admin_mode %>
-          <div class="admin">
-          <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Destroy', event, :method => :delete %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+		<h1>Events</h1>
+	</div><!-- /header -->
 
-  </div>        
+	<div data-role="content" class="ui-content">	
+    <ul data-role="listview" class="ui-listview">
+         <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count"><%=@events.size%></span></li>
+        <% @events.each do |event| %>
+        
+        <li data-theme="c" >
+          <div class="ui-li">
+            <div class="ui-btn-text">
+              <a href="/events/<%=event.id%>" rel="external" class="ui-link-inherit">
+                <p class="ui-li-aside"><strong><%= event.start_time_utc.localtime.to_formatted_s(:short) %></strong></p>
+      					<h3><%= event.title %></h3>
+      					<p><strong><%= event.location %></strong></p>
+      					<p><%= event.description %></p>
+        			</a>
+        			
+              <% if @admin_mode %>
+                <div class="admin">
+                <%= link_to 'Edit', edit_event_path(event) %>
+                <%= link_to 'Destroy', event, :method => :delete %>
+                </div>
+              <% end %>
+        		</div>
+        		<span class="ui-icon ui-icon-arrow-r"></span>
+        	</div>
+        </li>        
+      <% end %>
+    </ul>        
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+
 
 
 

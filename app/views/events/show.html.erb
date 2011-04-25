@@ -1,15 +1,17 @@
 
-
-<div id="centerwrap" class="roundeds">
-  <div class="event-title "><div class="leftNav"><a href="/">Events</a></div><h1><%=@event.title%><h1></div>
-  <div id="content" class="rounded">
+<div data-role="page" id="event_<%=@event.id%>">
+  <div data-role="header">
+    <a href="/events" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-icon-left ui-btn-corner-all ui-shadow" data-rel="back" data-icon="arrow-l" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow"></span></span></a>
+    <h1><%=@event.title%></h1></div>
+  <!-- <div class="event-title ><div class="leftNav"><a href="/">Events</a></div><h1><%=@event.title%><h1></div> -->
+  <div id="content" data-role="content">
     <div id="vote-header">
 
     </div>
     <div class="rating-area">
       <div id="indicator" class="number-window triangle-border"><div class="number-window-glass"><div class="current-number"></div></div></div>
-      <div id="spectrum-ruler"class="top-rounded">
-        <div id="instructions" class="top-rounded">
+      <div id="spectrum-ruler">
+        <div id="instructions">
             Tap the Spectrum to Give Feedback
         </div>
         <div id="rater" class="rater">

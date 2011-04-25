@@ -15,14 +15,14 @@
     position:absolute;
 }
 
-h1 {
-	color: whitesmoke;		
+/*h1 {
+  color: whitesmoke;    
 }
 
 div.field label {
-	color: whitesmoke;	
+  color: whitesmoke;  
 }
-
+*/
 div.event-table-cell {
 	display: block;
 	background-color: #fff;
@@ -46,7 +46,6 @@ div.event-table-cell {
 
 div.event-table-cell #title {
 	font-weight: bold;
-	font-size: 20px;
 }
 
 div.event-table-cell #details {

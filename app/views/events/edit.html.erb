@@ -1,6 +1,13 @@
-<h1>Editing event</h1>
+<div data-role="page" id="bar">
 
-<%= render 'form' %>
+	<div data-role="header">
+		<h1>Editing event</h1>
+	</div><!-- /header -->
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+	<div data-role="content">	
+    <%= render 'form' %>
+
+    <%= link_to 'Back', events_path %>
+	</div><!-- /content -->
+
+</div><!-- /page -->
