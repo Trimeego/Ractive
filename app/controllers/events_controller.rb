@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  caches_action :index, :expires_in => 15.minutes
+  caches_action :show, :expires_in => 15.minutes
   # GET /events
   # GET /events.xml
   def index

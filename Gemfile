@@ -10,6 +10,7 @@ group :production do
 	gem 'mysql2'
 end
 
+gem 'dalli'
 gem 'pusher'
 # Use unicorn as the web server
 # gem 'unicorn'

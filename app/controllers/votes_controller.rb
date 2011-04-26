@@ -1,4 +1,8 @@
 class VotesController < ApplicationController
+
+  caches_action :index, :expires_in => 10.seconds
+  caches_action :graph, :expires_in => 10.seconds
+  
   # GET event/id/votes
   # GET /votes.xml
   def index
@@ -15,7 +19,6 @@ class VotesController < ApplicationController
   def graph
     @event = Event.find(params[:event_id])
     @votes = @event.vote_histogram
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @votes }

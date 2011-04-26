@@ -31,6 +31,7 @@ GEM
     arel (2.0.6)
     builder (2.1.2)
     crack (0.1.8)
+    dalli (1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
@@ -41,6 +42,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mysql2 (0.2.7)
     polyglot (0.3.1)
     pusher (0.6.0)
       crack
@@ -79,6 +81,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dalli
+  mysql2
   pusher
   rails (= 3.0.3)
   sqlite3-ruby
