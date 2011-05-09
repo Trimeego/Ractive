@@ -120,7 +120,7 @@
     
     var user_challenge =  "<div><label id='prompt'>Please enter your email:</label><br/><input type='text' id='user_email' name='user_email' size='30'></input><p>This is only used to keep your feedback separated from others' and will not be shared with anyone.  If you are still uncomfortable, just make something up...seriously!</p><button id='okBtn'>Submit</button></div>";
 
-    var boxy = new Boxy(user_challenge, {title: "Dialog", modal: true, closeable: false});
+    var boxy = new Boxy(user_challenge, {title: "Who Are You?", modal: true, closeable: false});
 
      $('#okBtn').live('click', function(){
        user = $('#user_email').val();
