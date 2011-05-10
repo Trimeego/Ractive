@@ -56,6 +56,7 @@ class VotesController < ApplicationController
     
     respond_to do |format|
       if @vote.save
+        cookies[:last_email] = @vote.nickname
         #write the pusher even now.  TODO:  look into another method for doing this like socket IO
         Pusher.app_id = '1863'
         Pusher.key = 'b98047814c02f83dc79d'

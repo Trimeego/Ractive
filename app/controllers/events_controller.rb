@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
+    @email = cookies[:last_email] || ''
     @event = Event.find(params[:id])
 
     respond_to do |format|
