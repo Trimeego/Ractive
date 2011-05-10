@@ -72,5 +72,10 @@ class VotesController < ApplicationController
       end
     end
   end
+  
+  def reset_all
+    Vote.delete_all
+    redirect_to root_path
+  end
 
 end
