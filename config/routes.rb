@@ -11,7 +11,7 @@ Ractive::Application.routes.draw do
   match 'events/:event_id/graph' => 'votes#graph', :as => :graph
 
   match '/rebuild_all' => 'events#build_all'
-
+  match '/reset_votes' => 'votes#reset_all'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
