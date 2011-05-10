@@ -93,7 +93,7 @@ class EventsController < ApplicationController
   def build_all
     if params[:confirm]=='yes'
       Event.delete_all
-      Event.create :featured => true, :start_time_utc => DateTime.parse('2011-5-11 3:30pm'), :end_time_utc => DateTime.parse('2011-5-11 4:30pm'), :location => 'Miami 3', :title => 'Know the Numbers', :description =>  'Easy to Use Dashboards and Reporting Tools to Help You Manage Your AP Operation'
+      Event.create :featured => true, :start_time_utc => DateTime.parse('2011-5-11 2:15pm'), :end_time_utc => DateTime.parse('2011-5-11 3:15pm'), :location => 'Miami 3', :title => 'Know the Numbers', :description =>  'Easy to Use Dashboards and Reporting Tools to Help You Manage Your AP Operation'
       Event.create :start_time_utc => DateTime.parse('2011-5-11 3:30pm'), :end_time_utc => DateTime.parse('2011-5-11 4:30pm'), :location => 'Daytona 2', :title => 'Changing the Face of AP through e-Invoicing and Cloud Automation'
       Event.create :start_time_utc => DateTime.parse('2011-5-11 3:30pm'), :end_time_utc => DateTime.parse('2011-5-11 4:30pm'), :location => 'Sanibel 3', :title => 'How to Use Technology to Make Your One-Card Program a Success'
       Event.create :start_time_utc => DateTime.parse('2011-5-11 3:30pm'), :end_time_utc => DateTime.parse('2011-5-11 4:30pm'), :location => 'Tallahassee 2', :title => 'Intervention for Accounts Payable'

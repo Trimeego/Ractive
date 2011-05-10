@@ -27,8 +27,8 @@
           <div class="ui-li">
             <div class="ui-btn-text">
               <a href="/events/<%=event.id%>" rel="external" class="ui-link-inherit">
-                <p class="ui-li-aside"><strong><%= event.start_time_utc.localtime.to_formatted_s(:short) %></strong></p>
-      					<h3><%= event.title %></h3>
+      					<div><h3><%= event.title %></h3></div>
+                <!-- <p class="ui-li-aside"><strong><%= event.start_time_utc.localtime.to_formatted_s(:short) %></strong></p> -->
       					<p><strong><%= event.location %></strong></p>
       					<p><%= event.description %></p>
         			</a>
