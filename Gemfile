@@ -12,6 +12,10 @@ end
 
 gem 'dalli'
 gem 'pusher'
+
+gem 'devise'
+
+gem 'user-agent'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -29,9 +29,14 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.6)
+    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     crack (0.1.8)
     dalli (1.0.3)
+    devise (1.3.4)
+      bcrypt-ruby (~> 2.1.2)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
@@ -43,6 +48,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.7)
+    orm_adapter (0.0.4)
     polyglot (0.3.1)
     pusher (0.6.0)
       crack
@@ -76,13 +82,18 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    user-agent (1.0.0)
+    warden (1.0.3)
+      rack (>= 1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   dalli
+  devise
   mysql2
   pusher
   rails (= 3.0.3)
   sqlite3-ruby
+  user-agent

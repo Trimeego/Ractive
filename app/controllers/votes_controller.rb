@@ -41,9 +41,19 @@ class VotesController < ApplicationController
 
   # POST /votes
   # POST /votes.xml
-  def create
+  def create    
     @event = Event.find(params[:event_id])
     @vote = @event.votes.new(params[:vote])
+    begin
+      agent = Agent.new request.user_agent
+      @vote.browser = agent.name
+      @vote.browser_version = agent.version
+      @vote.operating_system = agent.os
+    rescue e
+      logger.error "Error parsing agent #{e}"
+      @vote.browser = 'Unknown'
+    end
+    
     respond_to do |format|
       if @vote.save
         #write the pusher even now.  TODO:  look into another method for doing this like socket IO

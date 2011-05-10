@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   caches_action :index, :expires_in => 15.minutes
   caches_action :show, :expires_in => 15.minutes
+  
+  before_filter :authenticate_user!, :except => [:index, :show] 
+  layout 'mobile'
+  
   # GET /events
   # GET /events.xml
   def index
@@ -36,6 +40,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    
     @event = Event.find(params[:id])
   end
 

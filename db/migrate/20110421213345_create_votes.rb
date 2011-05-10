@@ -4,10 +4,8 @@ class CreateVotes < ActiveRecord::Migration
       t.integer :event_id
       t.string :nickname
       t.string :browser
-      t.string :browser
-      t.float :browser_version
+      t.string :browser_version
       t.string :operating_system
-      t.float :os_version
       t.integer :rating
       t.timestamps
     end
