@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510005141) do
+ActiveRecord::Schema.define(:version => 20110510015306) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110510005141) do
     t.datetime "end_time_utc"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "featured"
   end
 
   create_table "users", :force => true do |t|
