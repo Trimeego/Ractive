@@ -3,6 +3,8 @@ class EventsController < ApplicationController
   caches_action :show, :expires_in => 15.minutes
   
   before_filter :authenticate_user!, :except => [:index, :show] 
+  before_filter :admin_user?, :except => [:index, :show] 
+  
   layout 'mobile'
   
   # GET /events
