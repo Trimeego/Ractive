@@ -30,4 +30,9 @@ class Event < ActiveRecord::Base
     return histogram
   end
   
+  def session_time
+    st = self.start_time_utc.strftime("%A %b %d %I:%M%p") 
+    ed = self.end_time_utc.strftime("%I:%M%p")
+    "#{st} - #{ed}"
+  end
 end

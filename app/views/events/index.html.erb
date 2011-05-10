@@ -14,9 +14,15 @@
 
 	<div data-role="content" class="ui-content">	
     <ul data-role="listview" class="ui-listview">
-         <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count"><%=@events.size%></span></li>
+        <% current_st = ""%>
+         <!-- <li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count"><%=@events.size%></span></li> -->
         <% @events.each do |event| %>
-        
+        <% if event.session_time!=current_st %>
+          <% current_st = event.session_time %>
+          <li data-role="list-divider">
+            <%= current_st %>
+          </li>
+        <% end %>
         <li data-theme="c" >
           <div class="ui-li">
             <div class="ui-btn-text">
