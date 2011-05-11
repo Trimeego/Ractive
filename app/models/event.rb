@@ -30,6 +30,16 @@ class Event < ActiveRecord::Base
     return histogram
   end
   
+  def grouped_votes(group_by)
+    query = "select #{group_by}, count(*) as vote_count from votes where rating > 0 AND rating < 11 AND event_id = #{self.id} group by #{group_by}"
+    group_data = []
+    
+    Event.connection.select_all(query).each do |row|
+        group_data << [row[group_by], row['vote_count']]
+    end
+    return group_data    
+  end
+  
   def session_time
     st = self.start_time_utc.strftime("%A %b %d %I:%M%p") 
     ed = self.end_time_utc.strftime("%I:%M%p")

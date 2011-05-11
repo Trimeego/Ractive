@@ -18,7 +18,12 @@ class VotesController < ApplicationController
 
   def graph
     @event = Event.find(params[:event_id])
-    @votes = @event.vote_histogram
+    if params[:group_by]
+      @votes = @event.grouped_votes params[:group_by]
+    else
+      @votes = @event.vote_histogram
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @votes }
