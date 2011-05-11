@@ -118,7 +118,7 @@
   // $('document').ready(function(){
     //produce a martix form the data to get the effect that I am looking for
     
-    var user_challenge =  "<div><label id='prompt'>Please enter your email:</label><br/><input type='text' id='user_email' name='user_email' size='30' value='" + user_id + "'></input><p>This is only used to keep your feedback separated from others' and will not be shared with anyone.  If you are still uncomfortable, just make something up...seriously!</p><button id='okBtn'>Submit</button></div>";
+    var user_challenge =  "<div><label id='prompt'>Please enter your full name:</label><br/><input type='text' id='user_email' name='user_email' size='30' value='" + user_id + "'></input><p>This is only used to keep your feedback separated from others' and will not be shared with anyone.  If you are still uncomfortable, just make something up...seriously!</p><button id='okBtn'>Submit</button></div>";
 
     var boxy = new Boxy(user_challenge, {title: "Who Are You?", modal: true, closeable: false});
 
@@ -126,7 +126,7 @@
        user = $('#user_email').val();
        if(user==null||user.length==0)
        {
-         $('#prompt').html('No, really! Please enter your email:');
+         $('#prompt').html('No, really! Please enter your full name:');
        }
        else
        {
